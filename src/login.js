@@ -1,17 +1,15 @@
-let pass= document.querySelector("#pass");
-let name= document.querySelector("#user");
+let data = document.forms["data"];
+button = document.getElementById("button");
 
-document.querySelector("#login").addEventListener('click', () => {
-    if (pass && name === ""){
-        alert ("Debes ingresar informacion para acceder");
-        console.log (hola)
-    }
-    if (pass === "" || name === "") {
-        alert("Debes llenar todos los campos para ingresar");
-    } else {
-        document.querySelector("#href").href = "index.html";
-        console.log (login)
-    }
-});
 
-  
+document.querySelector("#login").addEventListener("click", function(event) {
+    let user = data.querySelector ("input [type='text']");
+let password = data.querySelector("input[type='password']")
+if (user.value==="" || password==="") {
+    event.preventDefault();
+    alert("Debes llenar todos los campos para ingresar")
+}
+else {
+    window.location.href = "index.html"
+}
+})
