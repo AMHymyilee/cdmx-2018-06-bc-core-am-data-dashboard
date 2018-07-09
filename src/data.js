@@ -81,6 +81,7 @@ window.computeStudentsStats = laboratoria => { // Pasamos argumento result a par
           'turn': infoStudent.turno,
           'stats': stats
         });
+        console.log(stats);
       });
       j++;
     });
@@ -92,26 +93,24 @@ window.computeStudentsStats = laboratoria => { // Pasamos argumento result a par
 
 window.filterCampus = (student, search) => {
   let searchResult = [];
-  //console.log(student);
   student.forEach(clues => {
     if (clues.campus === search) {
       searchResult.push(clues);
     }
   });
-  // console.log(element);
   return searchResult;
 };
 
 window.filterStats = (student, search) => {
   let searchResult = [];
   student.forEach(clues => {
-    //console.log(clues.stats.status);
     if (clues.stats.status === search) { // if result exist then push to array
       searchResult.push(clues);
     }
   });
   return searchResult;
 };
+
 
 window.filterStudents = (student, search) => {
   let searchResult = [];
@@ -125,27 +124,40 @@ window.filterStudents = (student, search) => {
 
 
 window.computeGenerationsStats = laboratoria => {
-  /*
   generationArr = [];
   let i = 0;
   let j = 0;
-  let suma = 0;
-  let campus = object.keys(laboratoria);
+  let sum = 0;
+  let campus = Object.keys(laboratoria);
   let generation = Object.values(laboratoria);
   generation.forEach(element => {
     let years = Object.values(element.generacion);
-    let generations = Object.values(element.generacion);
+    let generations = Object.keys(element.generacion);
     j = 0;
     years.forEach(students => {
       let estudiantes = students.estudiantes;
+      sum = 0;
       estudiantes.forEach(studentInfo => {
         sum += studentInfo.progreso.porcentajeCompletado;
       });
       let average = Math.round(sum / students.estudiantes.length);
-      generationArr.push( );
+      generationArr.push({
+        'campus': campus[i],
+        'generation': generations[j],
+        'average': average,
+        'count': estudiantes.length,
+      });
+      j++;
     });
-  });*/
-}; 
+    i++;
+  });
+  console.log(generationArr);
+  return generationArr;
+};
 
 
-window.sortStudents = (laboratoria) => {};
+window.sortStudents = (students, orderBy, orderDirection) => {
+  let sortResult = [];
+  let ASC = sortResult.sort((a, b) => a - b);
+  let DESC = sortResult.sort((b, a) => b - a);
+};
