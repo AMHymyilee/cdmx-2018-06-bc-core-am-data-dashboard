@@ -5,17 +5,19 @@ window.getData = () => {
     .then(result => result.json())
     .then(result => {
       const students = computeStudentsStats(result);
-      drawStudents(students);
       drawSearch(students);
       printSearchCampus(students);
-      printSearchStats(students);
-      const generation = computeGenerationsStats(result);
+      // printSearchStats(students);
+      /*
+      printGenerationbyCampus(students, campus, generation);*/
+      const generationStats = computeGenerationsStats(result);
     });
 };
 
 window.addStats = progress => {
   let stats = {};
   let topicsArray = progress.temas;
+  console.log(topicsArray);
 
   stats.completedPercentage = progress.porcentajeCompletado;
 
@@ -81,7 +83,6 @@ window.computeStudentsStats = laboratoria => { // Pasamos argumento result a par
           'turn': infoStudent.turno,
           'stats': stats
         });
-        console.log(stats);
       });
       j++;
     });
@@ -105,6 +106,17 @@ window.filterStats = (student, search) => {
   let searchResult = [];
   student.forEach(clues => {
     if (clues.stats.status === search) { // if result exist then push to array
+      searchResult.push(clues);
+    }
+  });
+  return searchResult;
+};
+
+
+window.filterGenerations = (student, search) => {
+  let searchResult = [];
+  student.forEach(clues => {
+    if (clues.generation === search) { // if result exist then push to array
       searchResult.push(clues);
     }
   });
@@ -151,13 +163,11 @@ window.computeGenerationsStats = laboratoria => {
     });
     i++;
   });
-  console.log(generationArr);
   return generationArr;
 };
 
 
 window.sortStudents = (students, orderBy, orderDirection) => {
   let sortResult = [];
-  let ASC = sortResult.sort((a, b) => a - b);
-  let DESC = sortResult.sort((b, a) => b - a);
+  
 };
